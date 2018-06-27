@@ -1,0 +1,1 @@
+// serviceWorkerContainer.register();
