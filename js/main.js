@@ -7,9 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
       currencyList.style.display = 'none';
     }
   }
-  
-  function createDomElement(name) {
+
+  function createDomElement(name, value) {
     let element = document.createElement(name);
+    element.setAttribute('value', value.id);
+    element.textContent = value.currencyName + '(' + value.id + ')';
     return element;
   }
 
@@ -21,12 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currencies.onreadystatechange = () => {
       if (currencies.readyState === 4 && currencies.status === 200) {
         const retrivedCurencies = currencies.response.results;
-        let option = createDomElement('option');
-        console.log(option);
+        let li_to, li_for;
         for (const [key, value] of Object.entries(retrivedCurencies)) {
-            console.log(value['id']);
-            option.setAttribute('value', value['id']);
-            populateForCurrency.appendChild(option);
+            li_for = createDomElement('li', value);
+            li_to = createDomElement('li', value);
+            console.log(li_for);
+            populateForCurrency.appendChild(li_for);
+            populateToCurrency.appendChild(li_to);
         }
           console.log(retrivedCurencies);
       }
