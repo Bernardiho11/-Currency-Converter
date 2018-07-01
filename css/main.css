@@ -13,7 +13,7 @@ body{
 }
 
 section{
-	background-color: lightblue;
+	background-color: #1c262f;
 	text-align: center;
 	position: relative;
 	margin: -20px 0 0 0;
@@ -37,10 +37,11 @@ label,
 .currency-converter-container{
 	position: absolute;
 	top: 200px;
-	background-color: rebeccapurple;
+	background-color: #02b3e4;
 	left: 424px;
 	padding: 32px;
 	border-radius: 5px;
+	width: 500px;
 }
 
 .from-currency-container,
@@ -51,7 +52,7 @@ label,
 
 .currency-value{
 	border: 0;
-	padding: 5px;
+	padding: 9px;
 	border-radius: 2px;
 	color: gray;
 	font-weight: 500;
@@ -72,7 +73,7 @@ label,
 	top: 34px;
 	left: 0;
 	width: 86%;
-	
+	display: none;
 }
 
 .currency-list-container ul{
@@ -102,6 +103,8 @@ label,
 	padding: 10px;
 	border-radius: 5px;
 	margin: 10px 0;
+	text-align: center;
+	font-size: 15px;
 }
 
 
@@ -115,12 +118,21 @@ label,
 	border-radius: 5px;
 	border: 1px solid;
 	font-size: 20px;
-	background-color: #298fca;
+	background-color: #1c262f;
 }
 
 .btn:hover{
 	background-color: #fafafa;
 	color: #298fca;
+}
+
+.currency{
+	width: 100%;
+    border: 0;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 100;
+    display: inline-block;
 }
 
 @media(max-width: 575.98px) { 

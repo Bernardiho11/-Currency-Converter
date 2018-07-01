@@ -18,50 +18,33 @@
         <label>
           From:
         </label>
-        <div class="select-currency" id="from" onclick="showCurrencyList(fromCurrency)">
-          Select Currency
-          <div class="currency-list-container" id="from-currency">
-            <ul id="CURR_FR">
-                
-            </ul>
-          </div>
-        </div>
-         <!-- <select id="CURR_FR" class="postfix">
-            <option value=""></option>
-         </select> -->
+        <div class="select-currency" id="from">
+         <select id="CURR_FR" class="currency">
+            <option value="">Select Currency</option>
+         </select>
+       </div>
        </div>
        <div class="to-currency-container">
         <label>
           To:
         </label>
-        <div class="select-currency" id="to" onclick="showCurrencyList(toCurrency)">
-          Select Currencys
-          <div class="currency-list-container" id="to-currency">
-            <ul id="CURR_TO">
-                
-            </ul>
-          </div>
+        <div class="select-currency" id="to">
+          <select name="currency-to" id="CURR_TO" class="currency">
+            <option value="">Select Currency</option>
+          </select>
         </div>
-         <!-- <select id="CURR_TO" class="postfix">
-            <option value=""></option>
-         </select> -->
        </div>
-        <input type="text" value="1" name="CURR_FR_VAL" id="CURR_FR_VAL" class="currency-value" placeholder="Enter amount" size="11">
+        <input type="text" value="1" id="amount" class="currency-value" placeholder="Enter amount" size="10">
       <div>
         <label for="CURR_VAL">
           Exchange Rate:
         </label>
-        <input type="text" id="CURR_VAL" readonly class="exchange-rate" placeholder="Press Convert button">
+        <input type="text" id="CURR_VAL" readonly class="exchange-rate" placeholder="Press Convert button" size="14">
         <a href="#" id="convert" class="btn">Convert</a>
       </div>
-     </div>
     </section>
-    
-
-   
-    
-    <script type="text/javascript" src="js/converter.js"></script>
-    <script type="text/javascript" src="js/sw.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+      
+  <script type="text/javascript" src="sw.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>

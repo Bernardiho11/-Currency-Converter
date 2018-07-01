@@ -1,57 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-  
-  function showCurrencyList(currencyList) {
-    if(currencyList.style.display = 'none'){
-      currencyList.style.display = 'block';
-    }else {
-      currencyList.style.display = 'none';
+function createDomElement(name, value) {
+  let element = document.createElement(name);
+  element.setAttribute('value', value.id);
+  element.textContent = value.currencyName + '(' + value.id + ')';
+  return element;
+}
+
+function populateCurrency() {
+  let populateForCurrency = document.querySelector('#CURR_FR');
+  let populateToCurrency = document.querySelector('#CURR_TO');
+  let url = 'https://free.currencyconverterapi.com/api/v5/currencies';
+
+  fetch(url).then((response)=>{
+    return response.json();
+  }).then((data)=>{
+    let option_to, option_for;
+    for (const [key, value] of Object.entries(data.results).sort()) {
+        option_for = createDomElement('option', value);
+        option_to = createDomElement('option', value);
+        populateForCurrency.appendChild(option_for);
+        populateToCurrency.appendChild(option_to);
     }
-  }
-
-  function createDomElement(name, value) {
-    let element = document.createElement(name);
-    element.setAttribute('value', value.id);
-    element.textContent = value.currencyName + '(' + value.id + ')';
-    return element;
-  }
-
-  function populateCurrency() {
-    let populateForCurrency = document.querySelector('#CURR_FR');
-    let populateToCurrency = document.querySelector('#CURR_TO');
-    let currencies = new XMLHttpRequest();
-    let url = 'https://free.currencyconverterapi.com/api/v5/currencies';
-    currencies.onreadystatechange = () => {
-      if (currencies.readyState === 4 && currencies.status === 200) {
-        const retrivedCurencies = currencies.response.results;
-        let li_to, li_for;
-        for (const [key, value] of Object.entries(retrivedCurencies)) {
-            li_for = createDomElement('li', value);
-            li_to = createDomElement('li', value);
-            console.log(li_for);
-            populateForCurrency.appendChild(li_for);
-            populateToCurrency.appendChild(li_to);
-        }
-          console.log(retrivedCurencies);
-      }
-    };
-
-    currencies.open('GET', url, true);
-    currencies.responseType = 'json';
-    currencies.send();
-  }
+  })
+}
 
 
-  populateCurrency();
+populateCurrency();
 
 
+let convert = document.querySelector('#convert');
 
-  // const from = document.getElementById('from');
-  // const to = document.getElementById('to');
-  const fromCurrency = document.getElementById('from-currency');    
-  const toCurrency = document.getElementById('to-currency');
-
-  //showCurrencyList(from, fromCurrency);
-  //showCurrencyList(to, toCurrency);  
-        
-
-});
+convert.addEventListener('click', (e)=>{
+  e.preventDefault();
+  let amount = document.querySelector('#amount').value;
+  let fromCurrency = document.querySelector('#CURR_FR').value;
+  let toCurrency = document.querySelector('#CURR_TO').value;
+  let displayValue = document.querySelector('#CURR_VAL');
+  let query = `${fromCurrency}_${toCurrency}`;
+  let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}`;
+  fetch(url).then((response)=>{
+    displayValue.placeholder = 'Converting...';
+    return response.json();
+  }).then((data)=>{
+    console.log(data.results[query].val);
+    let total = Math.round((amount * data.results[query].val) * 1000) / 1000;
+    displayValue.placeholder = total;
+  }).catch((err)=>{
+    alert(`Sorry we encontered an error`);
+  });
+})
