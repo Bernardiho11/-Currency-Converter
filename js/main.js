@@ -20,7 +20,7 @@ function populateCurrency() {
         populateForCurrency.appendChild(option_for);
         populateToCurrency.appendChild(option_to);
     }
-  })
+  });
 }
 
 
